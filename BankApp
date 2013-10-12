@@ -1,1 +1,146 @@
 #include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+
+
+
+void main()
+{
+	float cash=5000, x; //Kullanıcının bankada 5000 tl parası bulunmaktadır.
+	char username[20];
+	int password=9876; //Sifreyi kullanıcıdan almak yerine ben belirledim.
+	int option;
+	
+
+	printf("Welcome To GizemBank\n\n");
+	printf("Please enter your username: ", username);
+	gets_s(username);
+	printf("Please enter your password: ", password);
+	scanf_s("%d", &password);
+	
+	while(password!=9876)
+	{
+		printf("Wrong Password. Try again...\n");
+		printf("Please enter your password: ", password); //Sifre kontrolü icin while yapısı kullanıldı.Sifre dogru girilmedigi sürece tekrar sorgulanıyor.
+	    scanf_s("%d", &password);
+		if (password==9876)
+		{
+			break;
+		}
+	}
+	
+	printf("The Password Is Matched... \n\n");
+
+	
+	printf("...The System Is Loading.Please Wait...\n\n"); //3 saniye bekleme süresi.
+    Sleep( 3000 );  
+
+   
+	printf("MENU\n");
+	printf("***************\n");
+	printf("1-BALANCE\n");
+	printf("2-DEPOSIT\n");
+	printf("3-WITHDRAW\n");
+	printf("4-MONEY ORDER\n");
+	printf("5-EXIT\n");
+	printf("***************\n");
+	scanf_s("%d" ,&option);
+
+	
+	while(option!=1 && option!= 2 && option!=3 && option!= 4 && option!= 5 ) //Sadece menudeki secenekler girilebilir.
+	{
+		printf("Please press 1,2,3,4 and 5...\n");
+		Sleep(1000);
+		    printf("MENU\n");
+            printf("***************\n");
+            printf("1-BALANCE\n");
+            printf("2-DEPOSIT\n");
+            printf("3-WITHDRAW\n");
+            printf("4-MONEY ORDER\n");
+            printf("5-EXIT\n");
+            printf("***************\n");
+            scanf_s("%d" ,&option);
+		
+	}
+
+	switch (option)
+	{
+	case 1:
+
+		printf("Your Balance is 5000 TL\n\n");
+		break;
+		
+	case 2:
+			printf("Enter the amount of money: ");
+			scanf_s("%f" , &x);
+			while(x<0)
+			{
+				printf("You Can Not Enter A Negative Value...\n"); //Negatif sayi kontrolü
+				printf("Enter the amount of money: ");
+			    scanf_s("%f" , &x);
+				if(x>0)
+				{
+					break;
+				}
+			}
+			printf("New cash= %5.2f\n", cash=cash+x);
+
+
+
+			break;
+		
+		case 3:
+		
+			printf("Enter the amount of money: ");
+			scanf_s("%f" , &x);
+			while(x>5000)
+			{
+				printf("Insufficient Funds...\n"); //Bakiye kontrolü
+				printf("Enter the amount of money: ");
+			    scanf_s("%f" , &x);
+					
+			    if(x<5000)
+			    {
+			     break;
+			    }
+			
+			}
+			printf("New cash= %5.2f\n", cash=cash-x);
+			
+			break;
+			
+		
+		case 4:
+		
+			printf("Enter the amount of money: \n");
+			scanf_s("%f", &x);
+			while(x>5000)
+			{
+				printf("Insufficient Funds...\n");
+				printf("Enter the amount of money: ");
+			    scanf_s("%f" , &x);
+					
+			    if(x<5000)
+			    {
+			     break;
+			    }
+			}
+			printf("Transfer Is Completed...\n");
+			printf("New cash= %5.2f\n", cash=cash-x);
+			break;
+
+		case 5:
+			printf("Thanks For Choosing Us "); //Mesajı verdikten sonra 1 saniye bekler sonra sistem otomatik kapanır.
+			Sleep( 1000 ); 
+			return;
+			break;
+
+		
+	default:
+		return;
+		break;
+	}
+	   _getch();
+  }
+	
+
