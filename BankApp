@@ -10,12 +10,13 @@ void main()
 	char username[20];
 	int password=9876; //Sifreyi kullanıcıdan almak yerine ben belirledim.
 	int option;
+	double account_number; //Kullanıcıdan transfer işlemi için istenilen hesap numarası
 	
 
 	printf("Welcome To GizemBank\n\n");
-	printf("Please enter your username: ", username);
+	printf("Please enter your username: "); //Tırnaktan sonra virgül username yazıyordu, gereksiz islem silindi.
 	gets_s(username);
-	printf("Please enter your password: ", password);
+	printf("Please enter your password: "); //Tırnaktan sonra virgül password yazıyordu, gereksiz islem silindi.
 	scanf_s("%d", &password);
 	
 	while(password!=9876)
@@ -112,6 +113,8 @@ void main()
 		
 		case 4:
 		
+			printf("Please enter a account number which is transfer to money: \n");
+			scanf_s("%f",&account_number);
 			printf("Enter the amount of money: \n");
 			scanf_s("%f", &x);
 			while(x>5000)
